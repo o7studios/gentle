@@ -46,6 +46,28 @@ public sealed interface Result<T, E extends Error> permits Result.Ok, Result.Err
     }
 
     /**
+     * Returns whether this {@code Result} represents an error.
+     * <p>
+     * Equivalent to checking {@code instanceOf Err}.
+     *
+     * @return {@code true} if this is an {@link Err}, otherwise {@code false}
+     */
+    default boolean isError() {
+        return this instanceof Err<T,E>;
+    }
+
+    /**
+     * Returns whether this {@code Result} represents a successful value.
+     * <p>
+     * Equivalent to checking {@code instanceOf Ok}.
+     *
+     * @return {@code true} if this is an {@link Ok}, otherwise {@code false}
+     */
+    default boolean isOk() {
+        return this instanceof Ok<T,E>;
+    }
+
+    /**
      * Transforms the success value using the given function, leaving errors unchanged.
      *
      * @param f   the function to apply to the success value
